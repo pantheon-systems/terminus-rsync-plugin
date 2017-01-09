@@ -1,0 +1,14 @@
+{
+    "name": "pantheon-systems/terminus-rsync-plugin",
+    "description": "Rsync - Terminus Plugin that provides a quick shortcut for rsync-ing files to and from a Pantheon site.",
+    "license": "MIT",
+    "type": "terminus-plugin",
+    "autoload": {
+        "psr-4": { "Pantheon\\TerminusRsync\\": "src" }
+    },
+    "extra": {
+        "terminus": {
+            "compatible-version": "^1"
+        }
+    }
+}
