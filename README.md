@@ -15,15 +15,15 @@ This plugin requires no configuration to use.
 
 Copy the `files` directory of the dev environment of the Pantheon site `my_site` into a directory named `files` in the current working directory:
 ```
-terminus rsync my_site.dev:/files .
+terminus rsync my_site.dev:files .
 ```
 Copy everything in the files directory of the dev environment of the Pantheon site `my_site` into a folder called `assets` in the current working directory, omitting the `files` directory itself:
 ```
-terminus rsync my_site.dev:/files/ ./assets
+terminus rsync my_site.dev:files/ ./assets
 ```
 Copy everything in the folder `assets` in the current working directory into a folder called `assets` in the `files` directory of the dev environment of the Pantheon site `my_site`.
 ```
-terminus rsync ./assets my_site.dev:/files
+terminus rsync ./assets my_site.dev:files
 ```
 
 ## Limitations
