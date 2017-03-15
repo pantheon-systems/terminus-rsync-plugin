@@ -1,0 +1,27 @@
+#
+# Test the Terminus Composer Plugin
+#
+machine:
+  timezone:
+    America/Chicago
+  php:
+    version: 7.0.11
+  environment:
+    PATH: $PATH:~/.composer/vendor/bin:~/.config/composer/vendor/bin:$HOME/bin
+
+dependencies:
+  cache_directories:
+    - ~/.composer/cache
+  override:
+    - composer install --prefer-dist -n
+    - composer install-bats
+    - composer global require -n "consolidation/cgr"
+    # Install Terminus 1.x and add this project as a plugin
+    - cgr "pantheon-systems/terminus:^1.1"
+    - mkdir -p $HOME/.terminus/plugins
+    - ln -s $(pwd) $HOME/.terminus/plugins
+  post:
+    - terminus auth:login --machine-token=$TERMINUS_TOKEN
+test:
+  override:
+    - composer test

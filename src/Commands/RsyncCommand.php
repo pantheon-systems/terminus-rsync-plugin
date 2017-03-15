@@ -35,7 +35,8 @@ class RsyncCommand extends TerminusCommand implements SiteAwareInterface
     /**
      * Call rsync on a Pantheon site
      *
-     * @command rsync
+     * @command remote:rsync
+     * @aliases rsync
      *
      * @param string $src Source path
      * @param string $dest Destination path
@@ -46,8 +47,7 @@ class RsyncCommand extends TerminusCommand implements SiteAwareInterface
         if (strpos($src, ':') !== false) {
             $site_env_id = $this->getSiteEnvIdFromPath($src);
             $src = $this->removeSiteEnvIdFromPath($src);
-        }
-        else {
+        } else {
             $site_env_id = $this->getSiteEnvIdFromPath($dest);
             $dest = $this->removeSiteEnvIdFromPath($dest);
         }
