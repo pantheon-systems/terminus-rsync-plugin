@@ -16,7 +16,7 @@
     },
     "scripts": {
         "install-bats": "if [ ! -f bin/bats ] ; then git clone https://github.com/sstephenson/bats.git; mkdir -p bin; bats/install.sh .; fi",
-        "bats": "bin/bats tests",
+        "bats": "TERMINUS_PLUGINS_DIR=.. bin/bats tests",
         "cs": "phpcs --standard=PSR2 -n src",
         "cbf": "phpcbf --standard=PSR2 -n src",
         "test": [
