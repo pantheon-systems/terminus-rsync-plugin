@@ -70,6 +70,12 @@ class RsyncCommand extends TerminusCommand implements SiteAwareInterface
         $siteInfo = $site->serialize();
         $site_id = $siteInfo['id'];
 
+        // Stipulate the temporary directory to use iff the destination is remote.
+        $tmpdir = '';
+        if ($dest[0] == ':') {
+            $tmpdir = '~/tmp';
+        }
+
         $siteAddress = "$env_id.$site_id@appserver.$env_id.$site_id.drush.in:";
 
         $src = preg_replace('/^:/', $siteAddress, $src);
@@ -79,11 +85,15 @@ class RsyncCommand extends TerminusCommand implements SiteAwareInterface
         // in any mode options (e.g. '-r'), then add in the default.
         $rsyncOptionString = implode(' ', $rsyncOptions);
         if (!preg_match('/(^| )-[^-]/', $rsyncOptionString)) {
-            $rsyncOptionString = '-rlIpz';
+            $rsyncOptionString = "-rlIpz $rsyncOptionString";
+        }
+        // Add in a tmp-dir option if one was not already specified
+        if (!empty($tmpdir) && !preg_match('/(^| )--temp-dir/', $rsyncOptionString)) {
+            $rsyncOptionString = "$rsyncOptionString --temp-dir=$tmpdir --delay-updates";
         }
 
         $this->log()->notice('Running {cmd}', ['cmd' => "rsync $rsyncOptionString $src $dest"]);
-        $this->passthru("rsync $rsyncOptionString --ipv4 --exclude=.git -e 'ssh -p 2222' $src $dest >/dev/null 2>&1");
+        $this->passthru("rsync $rsyncOptionString --ipv4 --exclude=.git -e 'ssh -p 2222' $src $dest ");
     }
 
     protected function passthru($command)
