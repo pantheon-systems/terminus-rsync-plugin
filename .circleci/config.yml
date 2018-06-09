@@ -1,0 +1,30 @@
+defaults: &defaults
+  docker:
+    - image: quay.io/pantheon-public/php-ci:latest
+  working_directory: ~/work/terminus_rsync_plugin
+  environment:
+    BASH_ENV: ~/.bashrc
+    TZ: "/usr/share/zoneinfo/America/Los_Angeles"
+    TERM: dumb
+
+version: 2
+jobs:
+    test:
+        <<: *defaults
+        steps:
+            - checkout
+            - run:
+                name: Set up environment
+                command: ./.circleci/set-up-globals.sh
+            - run:
+                name: Dependencies
+                command: composer install
+            - run:
+                name: Test
+                command: composer test
+
+workflows:
+  version: 2
+  build_test:
+    jobs:
+      - test
