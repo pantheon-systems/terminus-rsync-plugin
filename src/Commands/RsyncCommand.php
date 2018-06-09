@@ -93,7 +93,7 @@ class RsyncCommand extends TerminusCommand implements SiteAwareInterface
         }
 
         $this->log()->notice('Running {cmd}', ['cmd' => "rsync $rsyncOptionString $src $dest"]);
-        $this->passthru("rsync $rsyncOptionString --ipv4 --exclude=.git -e 'ssh -p 2222' $src $dest ");
+        $this->passthru("rsync $rsyncOptionString --ipv4 --exclude=.git -e 'ssh -p 2222' '$src' '$dest' ");
     }
 
     protected function passthru($command)
