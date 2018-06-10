@@ -39,4 +39,4 @@ composer create-project --no-dev -d ~/.terminus/plugins pantheon-systems/terminu
 ```
 
 ## Help
-Use `terminus help <rsync>` to get help on this command.
+Use `terminus help remote:rsync` to get help on this command.
