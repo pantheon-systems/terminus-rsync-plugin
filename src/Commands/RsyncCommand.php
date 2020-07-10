@@ -1,6 +1,6 @@
 <?php
 /**
- * This command will manage secrets on a Pantheon site.
+ * This command will run rsync commands on a Pantheon site.
  *
  * See README.md for usage information.
  */
@@ -15,7 +15,7 @@ use Pantheon\Terminus\Site\SiteAwareTrait;
 use Symfony\Component\Filesystem\Filesystem;
 
 /**
- * Manage secrets on a Pantheon instance
+ * Run rsync commands on a Pantheon instance
  */
 class RsyncCommand extends TerminusCommand implements SiteAwareInterface
 {
