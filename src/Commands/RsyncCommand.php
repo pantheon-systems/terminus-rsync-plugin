@@ -92,8 +92,22 @@ class RsyncCommand extends TerminusCommand implements SiteAwareInterface
             $rsyncOptionString = "$rsyncOptionString --temp-dir=$tmpdir --delay-updates";
         }
 
+        // Add in a partial option if one was not already specified
+        if (!empty($tmpdir) && !preg_match('/(^| )--partial/', $rsyncOptionString)) {
+            $rsyncOptionString = "$rsyncOptionString --partial";
+        }
+
         $this->log()->notice('Running {cmd}', ['cmd' => "rsync $rsyncOptionString $src $dest"]);
-        $this->passthru("rsync $rsyncOptionString --ipv4 --exclude=.git -e 'ssh -p 2222' '$src' '$dest' ");
+        while (true) {
+            try {
+                $this->passthru("rsync $rsyncOptionString --ipv4 --exclude=.git -e 'ssh -p 2222' '$src' '$dest' ");
+                $this->log()->notice('Command finished successfully.');
+                break;
+            }
+            catch (TerminusException $e) {
+                $this->log()->notice('Retrying rsync command...');
+            }
+        }
     }
 
     protected function passthru($command)
