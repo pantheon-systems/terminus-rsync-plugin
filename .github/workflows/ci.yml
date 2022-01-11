@@ -1,0 +1,33 @@
+name: Terminus Rsync Plugin
+on: push
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    container:
+      image: pantheonpublic/terminus-plugin-test:3.x
+    name: Lint
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup environment
+        run: ./.ci/set-up-globals.sh
+      - name: Install dependencies
+        run: composer install
+      - name: Run linter
+        run: composer cs
+  test:
+    runs-on: ubuntu-latest
+    container:
+      image: pantheonpublic/terminus-plugin-test:3.x
+    name: Test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup environment
+        run: ./.ci/set-up-globals.sh
+      - name: Check Terminus version
+        run: terminus --version
+      - name: Install plugin
+        run: terminus self:plugin:install .
+      - name: Run tests
+        run: composer bats

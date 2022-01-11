@@ -17,9 +17,5 @@
         "bats": "TERMINUS_PLUGINS_DIR=.. PATH=$HOME/bin:$PATH bats -p -t tests",
         "cs": "phpcs --standard=PSR2 -n src",
         "cbf": "phpcbf --standard=PSR2 -n src",
-        "test": [
-            "@bats",
-            "@cs"
-        ]
     }
 }
