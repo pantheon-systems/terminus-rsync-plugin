@@ -93,7 +93,7 @@ class RsyncCommand extends TerminusCommand implements SiteAwareInterface
         }
 
         // Add in a partial option if one was not already specified
-        if (!empty($tmpdir) && !preg_match('/(^| )--partial/', $rsyncOptionString)) {
+        if (!preg_match('/(^| )--partial/', $rsyncOptionString)) {
             $rsyncOptionString = "$rsyncOptionString --partial";
         }
 
