@@ -1,25 +1,30 @@
 name: Terminus Rsync Plugin
 on: push
 jobs:
-  lint:
+  checkout_lint:
     runs-on: ubuntu-latest
     container:
-      image: pantheonpublic/terminus-plugin-test:3.x
-    name: Lint
+      image: quay.io/pantheon-public/php-ci:v7.4
+    name: Checkout & lint
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup environment
-        run: ./.ci/set-up-globals.sh
-      - name: Install dependencies
+      - name: Save repo content as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: full-workspace
+          path: ${{ github.workspace }}
+      - name: Full Composer Install
         run: composer install
-      - name: Run linter
+      - name: Validate Code
         run: composer cs
+
   test:
     runs-on: ubuntu-latest
     container:
       image: pantheonpublic/terminus-plugin-test:3.x
     name: Test
+    needs: [ checkout_lint ]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
