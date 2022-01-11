@@ -28,8 +28,10 @@ jobs:
     name: Test
     needs: [ checkout_lint ]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: Download repo content from artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: full-workspace
       - name: Setup environment
         run: ./.ci/set-up-globals.sh
       - name: Check Terminus version
