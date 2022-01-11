@@ -16,6 +16,8 @@ jobs:
           path: ${{ github.workspace }}
       - name: Full Composer Install
         run: composer install
+      - name: Install phpcs
+        run: composer install-phpcs
       - name: Validate Code
         run: composer cs
 
