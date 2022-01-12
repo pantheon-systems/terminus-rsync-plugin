@@ -27,11 +27,16 @@ jobs:
       image: pantheonpublic/terminus-plugin-test:3.x
     name: Test
     needs: [ checkout_lint ]
+    defaults:
+      run:
+        shell: bash
+        working-directory: /terminus-plugin-test/plugin
     steps:
       - name: Download repo content from artifact
         uses: actions/download-artifact@v2
         with:
           name: full-workspace
+          path: /terminus-plugin-test/plugin
       - name: Setup environment
         run: ./.ci/set-up-globals.sh
       - name: Check Terminus version
