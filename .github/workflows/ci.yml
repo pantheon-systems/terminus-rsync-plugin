@@ -35,6 +35,7 @@ jobs:
       TERMINUS_TOKEN: ${{ secrets.TERMINUS_TOKEN }}
       TERMINUS_SITE: ${{ secrets.TERMINUS_SITE }}
       BASH_ENV: ~/.bashrc
+      HOME: /terminus-plugin-test
     steps:
       - name: Download repo content from artifact
         uses: actions/download-artifact@v2
