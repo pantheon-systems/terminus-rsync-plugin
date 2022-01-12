@@ -31,6 +31,9 @@ jobs:
       run:
         shell: bash
         working-directory: /terminus-plugin-test/plugin
+    env:
+      TERMINUS_TOKEN: ${{ secrets.TERMINUS_TOKEN }}
+      TERMINUS_SITE: ${{ secrets.TERMINUS_SITE }}
     steps:
       - name: Download repo content from artifact
         uses: actions/download-artifact@v2
