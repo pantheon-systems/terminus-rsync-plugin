@@ -9,17 +9,13 @@
 # See: https://discuss.circleci.com/t/environment-variable-expansion-in-working-directory/11322
 # See: https://discuss.circleci.com/t/circle-2-0-global-environment-variables/8681
 #=====================================================================================================================
-mkdir -p $(dirname $BASH_ENV)
-touch $BASH_ENV
-(
-  echo 'export PATH=$PATH:$HOME/bin'
-  echo 'export TERMINUS_HIDE_UPDATE_MESSAGE=1'
-) >> $BASH_ENV
-source $BASH_ENV
-
-set -ex
-
-TERMINUS_PLUGINS_DIR=.. terminus list -n remote
+#mkdir -p $(dirname $BASH_ENV)
+#touch $BASH_ENV
+#(
+#  echo 'export PATH=$PATH:$HOME/bin'
+#  echo 'export TERMINUS_HIDE_UPDATE_MESSAGE=1'
+#) >> $BASH_ENV
+#source $BASH_ENV
 
 set +ex
 echo "Test site is $TERMINUS_SITE"
