@@ -38,7 +38,7 @@ jobs:
           name: full-workspace
           path: /terminus-plugin-test/plugin
       - name: Setup environment
-        run: chmod+x ./.ci/set-up-globals.sh && ./.ci/set-up-globals.sh
+        run: chmod +x ./.ci/set-up-globals.sh && ./.ci/set-up-globals.sh
       - name: Check Terminus version
         run: terminus --version
       - name: Install plugin
