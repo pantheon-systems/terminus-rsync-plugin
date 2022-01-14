@@ -14,7 +14,6 @@
   date > $tmpdir/test-time.txt
 
   # Copy our test file over
-  echo "terminus rsync $tmpdir/test-time.txt $TERMINUS_SITE.dev:files"
   run terminus rsync $tmpdir/test-time.txt $TERMINUS_SITE.dev:files
   [ "$status" -eq 0 ]
 
