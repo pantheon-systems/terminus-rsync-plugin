@@ -13,8 +13,8 @@
     },
     "scripts": {
         "install-bats": "if [ ! -f bin/bats ] ; then git clone https://github.com/sstephenson/bats.git; mkdir -p $HOME/bin; bats/install.sh $HOME; fi",
-        "install-phpcs": "mkdir -p phpcs && cd phpcs && COMPOSER_BIN_DIR=../vendor/bin composer require squizlabs/php_codesniffer:^2.7",
-        "bats": "TERMINUS_PLUGINS_DIR=.. PATH=$HOME/bin:$PATH bats -p -t tests",
+        "install-phpcs": "mkdir -p phpcs && cd phpcs && COMPOSER_BIN_DIR=../vendor/bin composer require squizlabs/php_codesniffer",
+        "bats": "PATH=$HOME/bin:$PATH bats -p -t tests",
         "cs": "phpcs --standard=PSR2 -n src",
         "cbf": "phpcbf --standard=PSR2 -n src"
     }
