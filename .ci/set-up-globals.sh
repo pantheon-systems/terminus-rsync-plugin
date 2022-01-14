@@ -22,6 +22,7 @@ echo "Test site is $TERMINUS_SITE"
 echo "Logging in with a machine token:"
 terminus auth:login -n --machine-token="$TERMINUS_TOKEN"
 terminus whoami
+mkdir -p $HOME/.ssh
 touch $HOME/.ssh/config
 echo "StrictHostKeyChecking no" >> "$HOME/.ssh/config"
 git config --global user.email "$GIT_EMAIL"
