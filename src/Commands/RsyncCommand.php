@@ -98,22 +98,20 @@ class RsyncCommand extends TerminusCommand implements SiteAwareInterface
         }
 
         $this->log()->notice('Running {cmd}', ['cmd' => "rsync $rsyncOptionString $src $dest"]);
-        $attempts = 1;
+        $attempts = 0;
         $maxAttempts = 5;
-        while (true) {
+        while (++$attempts <= $maxAttempts) {
             try {
                 $this->passthru("rsync $rsyncOptionString --ipv4 --exclude=.git -e 'ssh -p 2222' '$src' '$dest' ");
                 $this->log()->notice('Command finished successfully.');
-                break;
+                return;
             } catch (TerminusException $e) {
-                if ($attempts >= $maxAttempts) {
-                    $this->log()->notice('Command failed after {attempts} attempts.', ['attempts' => $attempts]);
-                    throw $e;
-                }
-                $attempts++;
                 $this->log()->notice('Retrying rsync command...');
             }
         }
+
+        $this->log()->notice('Command failed after {attempts} attempts.', ['attempts' => $maxAttempts]);
+        throw $e;
     }
 
     protected function passthru($command)
