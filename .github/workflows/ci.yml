@@ -52,5 +52,6 @@ jobs:
         uses: shimataro/ssh-key-action@v2.3.1
         with:
           key: ${{ secrets.SSH_KEY }}
+          known_hosts: unnecessary
       - name: Run tests
         run: composer bats
