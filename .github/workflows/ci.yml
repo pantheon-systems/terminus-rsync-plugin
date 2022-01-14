@@ -25,6 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: pantheonpublic/terminus-plugin-test:4.x-php8.0
+      options: --user root
     name: Test
     needs: [ checkout_lint ]
     defaults:
@@ -48,5 +49,9 @@ jobs:
         run: terminus --version
       - name: Install plugin
         run: terminus self:plugin:install .
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        with:
+          sudo: false
       - name: Run tests
         run: composer bats
