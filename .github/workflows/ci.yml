@@ -25,6 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: pantheonpublic/terminus-plugin-test:4.x-php8.0
+      options: --user root
     name: Test
     needs: [ checkout_lint ]
     defaults:
