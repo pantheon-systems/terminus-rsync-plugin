@@ -24,7 +24,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: pantheonpublic/terminus-plugin-test:3.x
+      image: pantheonpublic/terminus-plugin-test:4.x-php8.0
     name: Test
     needs: [ checkout_lint ]
     defaults:
