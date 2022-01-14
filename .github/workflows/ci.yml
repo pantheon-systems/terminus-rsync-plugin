@@ -23,9 +23,13 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
+      matrix:
+        php-versions: ['7.4', '8.0']
     container:
-      image: pantheonpublic/terminus-plugin-test:4.x-php8.0
-    name: Test
+      image: pantheonpublic/terminus-plugin-test:4.x-php${{ matrix.php-versions }}
+    name: Test (PHP ${{ matrix.php-versions }})
     needs: [ checkout_lint ]
     defaults:
       run:
