@@ -64,6 +64,15 @@ class RsyncCommand extends TerminusCommand implements SiteAwareInterface
      */
     protected function rsync($site_env_id, $src, $dest, array $rsyncOptions)
     {
+        $maxAttempts = 5;
+
+        foreach ($rsyncOptions as $key => $option) {
+            if (strpos($option, '--max-attempts') === 0) {
+                $maxAttempts = (int) substr($option, strlen('--max-attempts') + 1);
+                unset($rsyncOptions[$key]);
+            }
+        }
+
         list($site, $env) = $this->getSiteEnv($site_env_id);
         $env_id = $env->getName();
 
@@ -92,8 +101,25 @@ class RsyncCommand extends TerminusCommand implements SiteAwareInterface
             $rsyncOptionString = "$rsyncOptionString --temp-dir=$tmpdir --delay-updates";
         }
 
+        // Add in a partial option if one was not already specified
+        if (!preg_match('/(^| )--partial/', $rsyncOptionString)) {
+            $rsyncOptionString = "$rsyncOptionString --partial";
+        }
+
         $this->log()->notice('Running {cmd}', ['cmd' => "rsync $rsyncOptionString $src $dest"]);
-        $this->passthru("rsync $rsyncOptionString --ipv4 --exclude=.git -e 'ssh -p 2222' '$src' '$dest' ");
+        $attempts = 0;
+        while (++$attempts <= $maxAttempts) {
+            try {
+                $this->passthru("rsync $rsyncOptionString --ipv4 --exclude=.git -e 'ssh -p 2222' '$src' '$dest' ");
+                $this->log()->notice('Command finished successfully.');
+                return;
+            } catch (TerminusException $e) {
+                $this->log()->notice('Retrying rsync command...');
+            }
+        }
+
+        $this->log()->notice('Command failed after {attempts} attempts.', ['attempts' => $maxAttempts]);
+        throw $e;
     }
 
     protected function passthru($command)
