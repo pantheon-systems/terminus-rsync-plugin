@@ -1,7 +1,8 @@
 # Terminus Rsync Plugin
 
 [![CircleCI](https://circleci.com/gh/pantheon-systems/terminus-rsync-plugin.svg?style=shield)](https://circleci.com/gh/pantheon-systems/terminus-rsync-plugin)
-[![Terminus v1.x Compatible](https://img.shields.io/badge/terminus-v1.x-green.svg)](https://github.com/pantheon-systems/terminus-secrets-plugin/tree/1.x)
+[![Terminus v1.x Compatible](https://img.shields.io/badge/terminus-v1.x-green.svg)](https://github.com/pantheon-systems/terminus-rsync-plugin/tree/1.x)
+[![Terminus v2.x - v3.x Compatible](https://img.shields.io/badge/terminus-2.x%20--%203.x-green.svg)](https://github.com/pantheon-systems/terminus-rsync-plugin/tree/1.x)
 
 Terminus Plugin that provides a quick shortcut for rsync-ing files to and from a [Pantheon](https://www.pantheon.io) sites.
 
@@ -32,11 +33,18 @@ terminus rsync ./assets my_site.dev:files
 Either the source or the destination must be a local file or directory; both cannot be remote.
 
 ## Installation
-For help installing, see [Manage Plugins](https://pantheon.io/docs/terminus/plugins/)
+
+To install this plugin using Terminus 3:
+```
+terminus self:plugin:install terminus-rsync-plugin
+```
+
+On older versions of Terminus:
 ```
 mkdir -p ~/.terminus/plugins
-composer create-project --no-dev -d ~/.terminus/plugins pantheon-systems/terminus-rsync-plugin:~1
+composer create-project --no-dev -d ~/.terminus/plugins pantheon-systems/terminus-rsync-plugin
 ```
+For help installing, see [Manage Plugins](https://pantheon.io/docs/terminus/plugins/).
 
 ## Help
 Use `terminus help remote:rsync` to get help on this command.
