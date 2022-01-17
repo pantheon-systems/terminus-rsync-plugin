@@ -1,7 +1,7 @@
 # Terminus Rsync Plugin
 
-![GitHub Actions](https://github.com/pantheon-systems/terminus-rsync-plugin/actions/workflows/ci.yml/badge.svg)
-[![Terminus v1.x - v3.x Compatible](https://img.shields.io/badge/terminus-2.x%20--%203.x-green.svg)](https://github.com/pantheon-systems/terminus-rsync-plugin/tree/1.x)
+[![GitHub Actions](https://github.com/pantheon-systems/terminus-rsync-plugin/actions/workflows/ci.yml/badge.svg)](https://github.com/pantheon-systems/terminus-rsync-plugin/actions)
+[![Terminus v2.x - v3.x Compatible](https://img.shields.io/badge/terminus-2.x%20--%203.x-green.svg)](https://github.com/pantheon-systems/terminus-rsync-plugin/tree/1.x)
 
 Terminus Plugin that provides a quick shortcut for rsync-ing files to and from a [Pantheon](https://www.pantheon.io) sites.
 
