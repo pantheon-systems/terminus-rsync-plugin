@@ -21,12 +21,23 @@ jobs:
       - name: Validate Code
         run: composer cs
 
+  phpcompatibility:
+    runs-on: ubuntu-latest
+    name: PHP Compatibility
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: PHPCompatibility
+        uses: pantheon-systems/phpcompatibility-action@v1
+        with:
+          test-versions: 7.4-
+
   test:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 1
       matrix:
-        php-versions: ['7.4', '8.0']
+        php-versions: ['7.4', '8.2']
     container:
       image: pantheonpublic/terminus-plugin-test:4.x-php${{ matrix.php-versions }}
     name: Test (PHP ${{ matrix.php-versions }})
