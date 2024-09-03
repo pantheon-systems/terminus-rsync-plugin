@@ -53,7 +53,7 @@ jobs:
       HOME: /home/tester
     steps:
       - name: Download repo content from artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4.1.7
         with:
           name: full-workspace
           path: /terminus-plugin-test/plugin
