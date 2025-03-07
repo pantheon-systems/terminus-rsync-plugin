@@ -20,6 +20,10 @@ jobs:
         run: composer install-phpcs
       - name: Validate Code
         run: composer cs
+      - name: Lint
+        run: composer lint
+      - name: Deprecations check
+        run: composer deprecations
 
   phpcompatibility:
     runs-on: ubuntu-latest
