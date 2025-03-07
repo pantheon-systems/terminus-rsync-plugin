@@ -9,11 +9,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Save repo content as artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: full-workspace
-          path: ${{ github.workspace }}
       - name: Full Composer Install
         run: composer install
       - name: Install phpcs
@@ -56,11 +51,10 @@ jobs:
       BASH_ENV: ~/.bashrc
       HOME: /home/tester
     steps:
-      - name: Download repo content from artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: full-workspace
-          path: /terminus-plugin-test/plugin
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Full Composer Install
+        run: composer install
       - name: Setup environment
         run: chmod +x ./.ci/set-up-globals.sh && ./.ci/set-up-globals.sh
       - name: Check Terminus version
