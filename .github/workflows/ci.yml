@@ -8,7 +8,7 @@ jobs:
     name: Checkout & lint
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Full Composer Install
         run: composer install
       - name: Install phpcs
@@ -25,7 +25,7 @@ jobs:
     name: PHP Compatibility
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: PHPCompatibility
         uses: pantheon-systems/phpcompatibility-action@v1
         with:
@@ -52,7 +52,7 @@ jobs:
       HOME: /home/tester
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Full Composer Install
         run: composer install
       - name: Setup environment
