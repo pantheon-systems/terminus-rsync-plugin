@@ -45,7 +45,6 @@ jobs:
       TERMINUS_TOKEN: ${{ secrets.TERMINUS_TOKEN }}
       TERMINUS_SITE: ${{ secrets.TERMINUS_SITE }}
       BASH_ENV: ~/.bashrc
-      HOME: /home/tester
     steps:
       - name: Checkout
         uses: actions/checkout@v4
