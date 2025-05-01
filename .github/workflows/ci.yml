@@ -69,5 +69,8 @@ jobs:
         with:
           key: ${{ secrets.SSH_KEY }}
           known_hosts: unnecessary
+      - name: Setup Bats and bats libs
+        id: setup-bats
+        uses: bats-core/bats-action@3.0.0
       - name: Run tests
         run: composer bats
