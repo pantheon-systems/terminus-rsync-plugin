@@ -94,7 +94,7 @@ class RsyncCommand extends TerminusCommand implements SiteAwareInterface
         // in any mode options (e.g. '-r'), then add in the default.
         $rsyncOptionString = implode(' ', $rsyncOptions);
         if (!preg_match('/(^| )-[^-]/', $rsyncOptionString)) {
-            $rsyncOptionString = "-rlIpz $rsyncOptionString";
+            $rsyncOptionString = "--info=progress2 -rlIpz $rsyncOptionString";
         }
         // Add in a tmp-dir option if one was not already specified
         if (!empty($tmpdir) && !preg_match('/(^| )--temp-dir/', $rsyncOptionString)) {
