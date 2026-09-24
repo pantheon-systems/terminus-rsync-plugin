@@ -1,12 +1,13 @@
+# Managed by github-terraform — do not edit manually
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: terminus-rsync-plugin
-  description: Auto-generated catalog info for pantheon-systems/terminus-rsync-plugin
+  name: "terminus-rsync-plugin"
+  description: "Terminus Plugin that provides a quick shortcut for rsync-ing files to and from a Pantheon site."
   annotations:
-    backstage.io/techdocs-ref: dir:docs/
+    "backstage.io/techdocs-ref": "dir:docs/"
 spec:
-  type: tool
-  lifecycle: mature
-  owner: developer-experience
+  type: "tool"
+  lifecycle: "mature"
+  owner: "developer-experience"
