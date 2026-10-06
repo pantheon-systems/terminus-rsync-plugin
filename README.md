@@ -26,7 +26,7 @@ terminus rsync my_site.dev:files/ ./assets
 ```
 Copy everything in the folder `assets` in the current working directory into a folder called `assets` in the `files` directory of the dev environment of the Pantheon site `my_site`.
 ```
-terminus rsync ./assets my_site.dev:files
+terminus rsync ./assets/ my_site.dev:files
 ```
 
 ## Limitations
