@@ -6,9 +6,9 @@ jobs:
     name: Checkout & lint
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
       - name: Setup PHP with PECL extension
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
         with:
           php-version: '8.2'
       - name: Full Composer Install
@@ -27,9 +27,9 @@ jobs:
     name: PHP Compatibility
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
       - name: PHPCompatibility
-        uses: pantheon-systems/phpcompatibility-action@v1
+        uses: pantheon-systems/phpcompatibility-action@6bcfb79e78f644a471e856a1e92e14148a8e4017 # v1.1.4
         with:
           test-versions: 7.4-
 
@@ -47,15 +47,15 @@ jobs:
       BASH_ENV: ~/.bashrc
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
       - name: Setup PHP with PECL extension
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
         with:
           php-version: ${{ matrix.php-versions }}
       - name: Full Composer Install
         run: composer install
       - name: Install Terminus
-        uses: pantheon-systems/terminus-github-actions@v1
+        uses: pantheon-systems/terminus-github-actions@409451ede17f75acac08f42edc823fee6c435057 # v1.2.8
         with:
           pantheon-machine-token: ${{ secrets.TERMINUS_TOKEN }}
       - name: Setup environment
@@ -65,12 +65,12 @@ jobs:
       - name: Install plugin
         run: terminus self:plugin:install .
       - name: Install SSH key
-        uses: shimataro/ssh-key-action@v2.3.1
+        uses: shimataro/ssh-key-action@3c9b0fc6f2d223b8450b02a0445f526350fc73e0 # v2.3.1
         with:
           key: ${{ secrets.SSH_KEY }}
           known_hosts: unnecessary
       - name: Setup Bats and bats libs
         id: setup-bats
-        uses: bats-core/bats-action@3.0.0
+        uses: bats-core/bats-action@2104b40bb7b6c2d5110b23a26b0bf265ab8027db # 3.0.0 2024-09-29T11:05:33Z
       - name: Run tests
         run: composer bats
