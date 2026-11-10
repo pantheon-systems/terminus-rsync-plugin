@@ -1,5 +1,7 @@
 name: Terminus Rsync Plugin
 on: push
+permissions:
+  contents: read
 jobs:
   checkout_lint:
     runs-on: ubuntu-latest
