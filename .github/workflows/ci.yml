@@ -71,6 +71,6 @@ jobs:
           known_hosts: unnecessary
       - name: Setup Bats and bats libs
         id: setup-bats
-        uses: bats-core/bats-action@2104b40bb7b6c2d5110b23a26b0bf265ab8027db # 3.0.0 2024-09-29T11:05:33Z
+        uses: bats-core/bats-action@3566550e0f594451ac0f58fcbfdeca93aa29a45e # 3.0.0 2024-09-29T11:05:33Z
       - name: Run tests
         run: composer bats
