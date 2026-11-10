@@ -55,7 +55,7 @@ jobs:
       - name: Full Composer Install
         run: composer install
       - name: Install Terminus
-        uses: pantheon-systems/terminus-github-actions@409451ede17f75acac08f42edc823fee6c435057 # v1.2.8
+        uses: pantheon-systems/terminus-github-actions@34305c662bb28fb2935aa5556cab46643a0c5170 # v1.2.11
         with:
           pantheon-machine-token: ${{ secrets.TERMINUS_TOKEN }}
       - name: Setup environment
@@ -65,7 +65,7 @@ jobs:
       - name: Install plugin
         run: terminus self:plugin:install .
       - name: Install SSH key
-        uses: shimataro/ssh-key-action@3c9b0fc6f2d223b8450b02a0445f526350fc73e0 # v2.3.1
+        uses: shimataro/ssh-key-action@87a8f067114a8ce263df83e9ed5c849953548bc3 # v2.8.1
         with:
           key: ${{ secrets.SSH_KEY }}
           known_hosts: unnecessary
